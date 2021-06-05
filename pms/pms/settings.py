@@ -25,7 +25,7 @@ SECRET_KEY = 'mg9^8-+b6tbbt9$#48_$^4bss^2as@dp82q(=5+o_rm*6q%3pp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['payrollkitchen.herokuapp.com','0.0.0.0','192.168.43.139','localhost','127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -78,14 +78,9 @@ WSGI_APPLICATION = 'pms.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'company',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-        'USER': 'root',
-        'PASSWORD': 'Ramadas1#'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME':str( BASE_DIR / 'db.sqlite3'),
     }
 }
 
