@@ -1,0 +1,10 @@
+{%extends 'base.html'%}
+{%block content%}
+<div>Lets see where this goes</div>
+    {% for obj in objects%}
+        <div>
+            
+            {{obj.emp_id.name}} {{obj.in_time}} {{obj.out_time}}
+        </div>
+    {%endfor%}
+{%endblock%}

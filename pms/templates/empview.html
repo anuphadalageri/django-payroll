@@ -1,0 +1,39 @@
+{% extends 'base_index.html'%}
+
+{%block title%}
+Employee attendance
+{%endblock%}
+
+{%block content%}
+<div class="container">
+    
+    <div class="row">
+      <div class="col-md-4">
+        <div class="step">
+          <span class="number">Employee</span>
+          <h3>{{emp.name}}</h3>
+          <ul class="list-unstyled">
+            <li>Employee id: {{emp.id}}</li>
+            <li>Phone no: {{emp.contact}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="step">
+          <span class="number">Worksite</span>
+          <h3>{{emp.work}}</h3>
+          <ul class="list-unstyled">
+            <li>Category: {{emp.category}}</li>
+            <li>Supervisor name: {{emp.supervisor.name}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="step">
+          <span class="number">Image</span>
+          <img src="{{emp.image.url}}" alt="Image" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </div>
+{%endblock%}

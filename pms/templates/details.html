@@ -1,0 +1,34 @@
+{% extends 'base_nav.html'%}
+
+{%block content%}
+    <h1 style="color: darkgreen;">{{obj.name}}</h1>
+        <div style="background-color: coral;">
+            Sex : {{obj.sex}}<br>
+            DOJ : {{obj.doj}}
+        </div>
+       <!--<div style="background-color:rgb(163, 194, 24);">
+            In time : {{atd.in_time}}<br>
+            Out time : {{atd.out_time}}-->
+        </div>
+        <table>
+            <tr>
+                <td>
+                    In time
+                </td>
+                <td>
+                    Out time
+                </td>
+                
+            </tr>
+            {% for a in atd%}
+                <tr>
+                    <td>
+                        {{a.in_time}}
+                    </td>
+                    <td>
+                        {{a.out_time}}
+                    </td>
+                </tr>
+            {%endfor%}
+        </table>
+{%endblock%}

@@ -1,0 +1,305 @@
+{% extends 'base_index.html' %}
+{%block title%}
+Attendance
+{%endblock%}
+{%block blue%}
+  {%if num1%}
+  Here's your attendance
+  {%endif%}
+  {%if num2%}
+  Here's your Salary Distribution
+  {%endif%}
+  {%if num3%}
+  Here's your Overtime details
+  {%endif%}
+{%endblock%}
+{%block content%}
+
+{%if num1%}
+
+<div class="container">
+    
+  <div class="row">
+    <div class="col-md-4">
+      <div class="step">
+        <span class="number">Employee</span>
+        <h3>{{emp.name}}</h3>
+        <ul class="list-unstyled">
+          <li>Employee id: {{emp.id}}</li>
+          <li>Phone no: {{emp.contact}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="step">
+        <span class="number">Worksite</span>
+        <h3>{{emp.work}}</h3>
+        <ul class="list-unstyled">
+          <li>Category: {{emp.category}}</li>
+          <li>Supervisor name: {{emp.supervisor.name}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="step">
+        <span class="number">Image</span>
+        {% if emp.image %}
+            <img src="{{emp.image.url}}" alt="Image" class="img-fluid">
+        {% endif %}
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container" style="border: 1px solid black;">
+     
+  <br>            
+  <table class="table table-bordered table-hover table-condensed ">
+    <thead>
+      <tr>
+        <th>In time</th>
+        <th>Out time</th>
+        <th>Hours</th>
+        
+        
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for obj in objects%}
+      <tr>
+          <td>
+              {{obj.in_time}}
+          </td>
+          
+          <td>
+              {{obj.out_time}}
+          </td>
+          <td>
+              {{obj.hours}}
+          </td>
+      </tr>
+      {%endfor%}
+      
+      <!--<tr>
+          <td>
+              Click the link to generate salary slip 
+          </td>
+          <td>
+              
+             
+          </td>
+          
+      </tr>-->
+        
+    </tbody>
+  </table>
+</div>
+
+{%endif%}
+{%if num2%}
+
+<div class="container">
+    
+  <div class="row">
+    <div class="col-md-4">
+      <div class="step">
+        <span class="number">Employee</span>
+        <h3>{{obj.emp.name}}</h3>
+        <ul class="list-unstyled">
+          <li>Employee id: {{obj.emp}}</li>
+          <li>Phone no: {{obj.emp.contact}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="step">
+        <span class="number">Worksite</span>
+        <h3>{{obj.emp.work}}</h3>
+        <ul class="list-unstyled">
+          <li>Category: {{obj.emp.category}}</li>
+          <li>Supervisor name: {{obj.emp.supervisor.name}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="step">
+        <span class="number">Image</span>
+        <img src="{{obj.emp.image.url}}" alt="Image" class="img-fluid">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container" style="border: 1px solid black;">
+     
+  <br>            
+  <table class="table table-bordered table-hover table-condensed ">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Amount</th>
+        
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+          <td>
+              Base Salary:
+              
+          </td>
+          <td>
+              {{obj.wages}}
+              
+          </td>
+        
+      </tr>
+        <tr>
+            <td>
+              claims:
+                
+            </td>
+            <td>
+              {{obj.claims}}
+              
+          </td>
+          
+        </tr>
+        <tr>
+          <td>
+              Bonus:
+              
+          </td>
+          <td>
+              {{obj.bonus}}
+              
+          </td>
+      </tr>
+      <tr>
+        <td>
+            Overtime shifts: 
+        </td>
+        <td>
+              {{obj.OT.OT_shifts}}
+          
+        </td>
+      </tr>
+        
+      </tr>
+        <tr>
+          <td>
+              Overtime pay: 
+          </td>
+          <td>
+              {{obj.OT.OT_pay}}
+          
+          </td>
+      </tr>
+  </tr>
+      <tr>
+          <td>
+              Days absent: 
+          </td>
+          <td>
+              {{obj.deduction.leaves}}
+          
+          </td>
+          
+      </tr>
+      <tr>
+          <td>
+              Deductions: 
+          </td>
+          <td>
+              {{obj.deduction.total_deductions}}
+          
+          </td>
+      </tr>
+      <tr>
+          <td>
+              Net Pay: 
+          </td>
+          <td>
+              {{obj.amount}}
+          
+          </td>
+      </tr>
+      <tr>
+        <td>
+            Click the link to view your salary slip 
+        </td>
+        <td>
+            
+          <!--<a href="/salary/salaryslip/{{obj.id}}" target="_blank" rel="noopener noreferrer">freeCodeCamp</a>-->
+          <a href="{% url 'salaryslip' id=obj.emp.id %}" target="_blank" rel="noopener noreferrer">View</a>
+        </td>
+        
+    </tr>
+        
+    </tbody>
+  </table>
+</div>
+{%endif%}
+
+{%if num3%}
+<div class="container" style="border: 1px solid black;">
+     
+  <br>            
+  <table class="table table-bordered table-hover table-condensed ">
+    
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Property</th>
+        
+        
+      </tr>
+    </thead>
+    <tbody>
+      {%for i in obj%}
+      <tr>
+        <td>
+            Overtime shifts:
+            
+        </td>
+        <td>
+            {{i.OT_shifts}}
+            
+        </td>
+      
+    </tr>
+        
+      
+      <tr>
+        <td>
+            Overtime pay: 
+        </td>
+        <td>
+            {{i.OT_pay}}
+        
+        </td>
+    </tr>
+
+      {%endfor%}
+      
+      
+      <!--<tr>
+          <td>
+              Click the link to generate salary slip 
+          </td>
+          <td>
+              
+             
+          </td>
+          
+      </tr>-->
+        
+    </tbody>
+  </table>
+</div>
+{%endif%}
+{% endblock %}

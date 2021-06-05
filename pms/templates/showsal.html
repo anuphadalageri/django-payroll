@@ -1,0 +1,13 @@
+{% extends 'base_index.html'%}
+
+{%block content%}
+
+<div>
+    <p>
+        <h2>Hello lets c where this goes</h2>
+        {%for msg in messages%}
+            {{msg}}
+        {%endfor%}
+    </p>
+</div>
+{%endblock%}
